@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.HomeTitle {
+    font-size: 30px;
+    max-width: 200px;
+    padding: 16px;
+    margin: 16px;
+}
+
+.header {
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "MonteCarlo", cursive;
+}
+
+.montecarlo-regular {
+    font-family: "MonteCarlo", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+li {
+    font-size: 22px;
+    border: 2px solid orange;
+    padding: 6px;
+}
+
+ul {
+    margin-left: 30px;
+    display: flex;
+    list-style-type: none;
+    margin-right: 2rem;
+    column-gap: 15px;
+}
+
