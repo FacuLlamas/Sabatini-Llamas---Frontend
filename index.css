@@ -39,8 +39,7 @@ p{ font-size: 1.25em;}
         align-items: center;
         height: 15vh;
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 1); 
-        
-
+        margin: 10px;
     }
     
     .homeTitle{
@@ -58,8 +57,8 @@ p{ font-size: 1.25em;}
         list-style-type: none;
         margin-right: 2rem;
         column-gap: 2rem;
-        flex-wrap: wrap; /* Hace que los elementos se envuelvan a la siguiente línea */
-        justify-content: center; /* Centra los elementos horizontalmente */
+        flex-wrap: wrap; 
+        justify-content: center; 
     }
 
     .hero {
@@ -75,8 +74,8 @@ p{ font-size: 1.25em;}
     
     .btnMarca {
         align-items: flex-end;
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         border-radius: 9px; 
         opacity: 1;
         cursor: pointer;
@@ -106,7 +105,7 @@ p{ font-size: 1.25em;}
             rgba(0,0,0,0.5),
             rgba(0,0,0,0.5)
         ) 
-        ,url("media/banner/banner5.jpg");
+        ,url("media/banner/banner3.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -221,7 +220,7 @@ p{ font-size: 1.25em;}
         list-style-type: none;
         align-items: flex-end;
     }
-    }
+    
     
     .btnMarca {
         display: flex;
