@@ -6,7 +6,7 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 // Create a Three.js Scene
 const scene = new THREE.Scene();
 // Create a new camera with positions and angles
-const camera = new THREE.PerspectiveCamera(75, 400 / 300, 10, 100);
+const camera = new THREE.PerspectiveCamera(80, 1600 / 1600, 1, 100);
 
 // Keep the 3D object on a global variable so we can access it later
 let object;
@@ -26,7 +26,7 @@ loader.load(
         scene.add(object);
 
         // Set initial position of the object
-        object.position.set(0, 0, 0);
+        object.position.set(0, -7, 0);
 
         // Start the animation
         animate();
@@ -43,13 +43,17 @@ loader.load(
 
 // Instantiate a new renderer and set its size
 const renderer = new THREE.WebGLRenderer({ alpha: true }); // Alpha: true allows for the transparent background
-renderer.setSize(window.innerWidth, window.innerHeight);
+const container = document.getElementById("container3D");
+const width = container.clientWidth;
+const height = container.clientHeight;
+
+renderer.setSize(width, height);
 
 // Add the renderer to the DOM
 document.getElementById("container3D").appendChild(renderer.domElement);
 
 // Set how far the camera will be from the 3D model
-camera.position.z = 25; // Adjust the camera's Z position
+camera.position.z = 22; // Adjust the camera's Z position
 
 // Add lights to the scene, so we can actually see the 3D model
 const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
@@ -57,55 +61,59 @@ topLight.position.set(500, 500, 500); // top-left-ish
 topLight.castShadow = true;
 scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight(0x333333, objToRender === "dino" ? 5 : 1);
+const ambientLight = new THREE.AmbientLight(0x333333, objToRender === "modelo" ? 5 : 1);
 scene.add(ambientLight);
 
-// Variable to track the rotation speed
-let rotationSpeed = 0.01;
+// Rotation speed of the model
+const rotationSpeed = 0.003;
 
-// Function to handle mouse drag
-function handleMouseDrag(event) {
-    if (isDragging) {
+// Variable to track if mouse is pressed
+let isMousePressed = false;
+// Variables to track mouse position
+let lastMouseX = 0;
+let lastMouseY = 0;
+
+// Function to handle mouse down (start of drag)
+function handleMouseDown(event) {
+    isMousePressed = true;
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
+}
+
+// Function to handle mouse up (end of drag)
+function handleMouseUp(event) {
+    isMousePressed = false;
+}
+
+// Function to handle mouse move (dragging)
+function handleMouseMove(event) {
+    if (isMousePressed) {
         let deltaX = event.clientX - lastMouseX;
+        let deltaY = event.clientY - lastMouseY;
 
-        // Adjust the rotation speed of the object based on mouse movement
-        rotationSpeed = deltaX * 0.001;
+        object.rotation.y += deltaX * 0.01; // Adjust rotation based on mouse movement
+        object.rotation.x += deltaY * 0.01;
+
+        lastMouseX = event.clientX;
+        lastMouseY = event.clientY;
     }
 }
 
-// Event listener for mouse movement
-document.addEventListener('mousemove', handleMouseDrag);
-
-// Variables to track mouse position and drag state
-let lastMouseX = 0;
-let isDragging = false;
-
-// Event listener for mouse down (start of drag)
-document.addEventListener('mousedown', function (event) {
-    isDragging = true;
-    lastMouseX = event.clientX;
-});
-
-// Event listener for mouse up (end of drag)
-document.addEventListener('mouseup', function (event) {
-    isDragging = false;
-});
+// Event listeners for mouse events
+document.addEventListener('mousedown', handleMouseDown);
+document.addEventListener('mouseup', handleMouseUp);
+document.addEventListener('mousemove', handleMouseMove);
 
 // Function to animate the scene
 function animate() {
     requestAnimationFrame(animate);
 
     // Rotate the model around its Y axis
-    if (object && objToRender === "modelo" && !isDragging) {
+    if (object && objToRender === "modelo" && !isMousePressed) {
         object.rotation.y += rotationSpeed;
     }
 
     renderer.render(scene, camera);
 }
 
-// Event listener to adjust camera aspect ratio and renderer size when the window is resized
-window.addEventListener("resize", function () {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
+
