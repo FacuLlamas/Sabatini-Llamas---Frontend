@@ -27,6 +27,10 @@ p{ font-size: 1.25em;}
     text-decoration: none; 
     color: inherit;
 }
+.carritoo{
+    text-decoration: none;
+    color: inherit;
+}
 
 
 
@@ -88,8 +92,20 @@ p{ font-size: 1.25em;}
         opacity: 0.9;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
     }
-    
-    
+
+    .container {
+        display: flex;
+        /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+        width: 100%;
+        height: 300px;
+    }
+
+    #container3D {
+
+
+        justify-self: flex-start;
+    }
     
     #hero{
         display: flex;
