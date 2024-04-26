@@ -5,7 +5,6 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
 /* Estilos generales */
 html {
     scroll-behavior: smooth;
@@ -34,8 +33,26 @@ p {
 .product {
     text-decoration: none;
     color: inherit;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
+.fijo{
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.nairf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
 /* Media Queries */
 @media (min-width: 426px) {
     /* Header */
@@ -43,11 +60,12 @@ p {
         display: flex;
         background-color: #ebebeb;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
         height: 80px;
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 1);
     }
+
+
 
     .LogoImagen{
         height: 100%;
@@ -58,8 +76,8 @@ p {
     }
 
     .homeImg {
-        margin: 16px;
-        transform: scale(2, 2); /* Alinea la imagen a la izquierda */
+        height: 100%;
+        width: max-content;
     }
 
     .search-container {
@@ -86,11 +104,8 @@ p {
     }
 
     .homeList {
-        color: black;
+        height: 100%;
         display: flex;
-        margin-left: 30px;
-        list-style-type: none;
-        margin-right: 2rem;
         column-gap: 2rem;
         flex-wrap: wrap;
         justify-content: center;

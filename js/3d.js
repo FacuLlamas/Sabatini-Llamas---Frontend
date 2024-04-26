@@ -6,7 +6,7 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 // Create a Three.js Scene
 const scene = new THREE.Scene();
 // Create a new camera with positions and angles
-const camera = new THREE.PerspectiveCamera(80, 1600 / 1600, 1, 100);
+const camera = new THREE.PerspectiveCamera(80, 16000 / 16000, 0.1, 1000);
 
 // Keep the 3D object on a global variable so we can access it later
 let object;
@@ -42,7 +42,7 @@ loader.load(
 );
 
 // Instantiate a new renderer and set its size
-const renderer = new THREE.WebGLRenderer({ alpha: true }); // Alpha: true allows for the transparent background
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); // Alpha: true allows for the transparent background
 const container = document.getElementById("container3D");
 const width = container.clientWidth;
 const height = container.clientHeight;
@@ -115,5 +115,3 @@ function animate() {
 
     renderer.render(scene, camera);
 }
-
-
